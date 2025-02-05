@@ -811,22 +811,33 @@ class HPCEnv(gym.Env):
         s /= float(total_cpu_hour)
         utils = s
 
-        match self.job_score_type:
-            case 0:
-                # print("return bsld")
-                return bsld
-            case 1:
-                # print("return wait")
-                return wait
-            case 2:
-                # print("return turn")
-                return turnaround
-            case 3:
-                # print("return util")
-                return utils
-            case 4:
-                # print("return sld")
-                return sld
+        if self.job_score_type == 0:
+            return bsld
+        elif self.job_score_type == 1:
+            return wait
+        elif self.job_score_type == 2:
+            return turnaround
+        elif self.job_score_type == 3:
+            return utils
+        elif self.job_score_type == 4:
+            return sld
+
+        # match self.job_score_type:
+        #     case 0:
+        #         # print("return bsld")
+        #         return bsld
+        #     case 1:
+        #         # print("return wait")
+        #         return wait
+        #     case 2:
+        #         # print("return turn")
+        #         return turnaround
+        #     case 3:
+        #         # print("return util")
+        #         return utils
+        #     case 4:
+        #         # print("return sld")
+        #         return sld
 
     def test_post_process_score(self):
         scheduled_logs = []
